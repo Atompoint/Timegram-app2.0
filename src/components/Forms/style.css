@@ -1,0 +1,22 @@
+label {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 21px;
+}
+
+Input {
+  height: 50px;
+  text-overflow: ellipsis;
+  border: 1px solid #d0d0d0;
+  box-sizing: border-box;
+  border-radius: 6px !important;
+}
+.Select {
+  height: 50px;
+  text-overflow: ellipsis;
+  border: 1px solid #d0d0d0;
+  box-sizing: border-box;
+  border-radius: 6px !important;
+}

@@ -24,9 +24,12 @@ function createWindow() {
   // create browser window
   win = new BrowserWindow({
     width: 500,
-    height: 750,
+    height: 720,
     webPreferences: {
       enableRemoteModule: true,
+      nodeIntegration: true,
+      contextIsolation: false,
+      webSecurity: false,
     },
     autoHideMenuBar: true,
     maximizable: false,
@@ -40,13 +43,11 @@ function createWindow() {
       : `file://${path.join(__dirname, "../build/index.html")}`
   );
 
-  // ******************** hidden apps ********************
-  TrayHandler({ CONSTANTS, iconPath, win });
-  // *****************************************************
+  TrayHandler({ CONSTANTS, iconPath, win });    // Tray Apps
 }
 
-app.on("ready", createWindow);          // creates window
-app.setAppUserModelId(APP_NAME);        // sets application name on windows
-getActiveWindow();                      // ipc
-openExternalWindow();                   // ipc
-macOS();                                // for Mac OS
+app.on("ready", createWindow);                  // creates window
+app.setAppUserModelId(APP_NAME);                // sets application name on windows
+getActiveWindow();                              // ipc (for highlights)
+openExternalWindow();                           // ipc (open in link browser)
+macOS();                                        // for Mac OS

@@ -1,0 +1,111 @@
+.wrapper {
+  padding: calc(var(--containerPadding) * 2) calc(var(--containerPadding) * 1.5);
+}
+
+.paragraph {
+  font-size    : 14px;
+  font-family  : Poppins;
+  color        : #030303;
+  font-style   : normal;
+  font-weight  : normal;
+  margin-bottom: 0px !important;
+}
+
+.detailsContainer {
+  margin-top   : calc(var(--containerMargin) * 3);
+  margin-bottom: calc(var(--containerMargin) / 2);
+}
+
+.divider {
+  height : 0px !important;
+  border : 1px solid var(--primaryColor);
+  padding: 0 !important;
+}
+
+.statusHeading {
+  color        : #2b4656;
+  font-family  : Univia Pro;
+  font-size    : 32px;
+  margin-bottom: 0;
+  display      : flex;
+  align-items  : flex-end;
+}
+
+.statusHeading>span {
+  color      : var(--primaryColor);
+  font-family: Univia Pro;
+}
+
+.statusText {
+  margin-left : 8px;
+  margin-right: 25px;
+}
+
+.loadingContainer {
+  margin-bottom: 10px;
+}
+
+.statusHeadingContainer {
+  margin-top   : var(--containerMargin);
+  margin-bottom: var(--containerMargin);
+}
+
+.menuContainer {
+  display        : flex;
+  justify-content: flex-end;
+  align-items    : flex-start;
+}
+
+.downArrow {
+  width  : 20px;
+  cursor : pointer;
+  opacity: 0.5;
+}
+
+.menuIcon {
+  cursor: pointer;
+}
+
+.footer {
+  padding   : 0 calc(var(--containerPadding) * 1.5);
+  position  : fixed;
+  bottom    : 0;
+  width     : 100%;
+  box-shadow: 5px 5px red;
+}
+
+.footer>h3 {
+  font-family: Poppins;
+  font-style : normal;
+  font-weight: normal;
+  font-size  : 7px;
+  color      : var(--primaryColor) !important;
+}
+
+.footer>div {
+  background-color: #ffffff;
+  display         : flex;
+  align-items     : center;
+  justify-content : space-between;
+  padding         : 15px 0px;
+}
+
+.appVersion {
+  text-align: end;
+  font-size : 11px !important;
+}
+
+.footerUpdateMsgContainer {
+  display        : flex;
+  justify-content: center;
+  align-items    : center;
+}
+
+.footerMsgTxt {
+  font-size: 11px;
+}
+
+.updateButton {
+  font-size: 11px !important;
+  color    : #009482 !important
+}
