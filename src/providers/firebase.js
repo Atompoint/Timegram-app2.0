@@ -7,7 +7,7 @@ import {
   setUserFirestore,
   stopUserLoading,
   clearUser,
-  startUploading
+  startUploading,
 } from "redux/userSlice";
 import { getUserDetails } from "api/firebase/user";
 
@@ -21,7 +21,7 @@ export default function FirebaseProvider({ children }) {
     dispatch(clearUser());
   };
 
-  // Authentication listener
+  // ******************** authentication listener ********************
   useEffect(() => {
     const unsubscribe = fbAuth().onAuthStateChanged((user) => {
       if (user) {
@@ -34,8 +34,9 @@ export default function FirebaseProvider({ children }) {
       unsubscribe && unsubscribe();
     };
   }, []);
+  // *****************************************************************
 
-  // User data listener
+  // ******************** user data listener ********************
   useEffect(() => {
     let unsubscribe;
     const setFirestore = (data) => {
@@ -56,8 +57,7 @@ export default function FirebaseProvider({ children }) {
       unsubscribe && unsubscribe();
     };
   }, [auth]);
-
-  
+  // ************************************************************
 
   return children;
 }

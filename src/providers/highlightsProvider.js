@@ -15,7 +15,7 @@ export default function HighlightsProvider({ children }) {
     }
     if (uploading) {
       detectIntervalID = setInterval(() => {
-        console.log("Detected...")
+        // console.log("Detected...")
         getActiveWindow();
       }, DETECT_INTERVAL);
     }
@@ -27,7 +27,7 @@ export default function HighlightsProvider({ children }) {
     }
     if (uploading) {
       uploadIntervalID = setInterval(() => {
-        console.log("Uploading...")
+        // console.log("Uploading...")
       }, UPLOAD_INTERVAL);
     }
     // *******************************************

@@ -23,6 +23,7 @@ export const db = firebase.firestore;
 export const refs = {
   users: db().collection("users"),
   assets: db().collection("assets"),
+  errors: db().collection("errors"),
   processMappings: db()
     .collection("global-config")
     .doc("processMappings")

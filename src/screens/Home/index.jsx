@@ -18,12 +18,14 @@ import { signOut } from "api/firebase/user";
 import packageJson from "../../../package.json";
 import { getNewestVersionOfApp } from "api/firebase/app";
 import { checkAppVersion } from "utils/helpers";
+import { uploadLogs } from "api/firebase/highlights";
 
 const HomeScreen = () => {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state);
   const navigate = useNavigate();
   const [newAppUpdate, setNewAppUpdate] = useState(null);
+  
   useEffect(() => {
     getNewestVersionOfApp().then((resp) => {
       if (resp && checkAppVersion(resp.currentVersion, packageJson.version))
@@ -110,7 +112,8 @@ const HomeScreen = () => {
           <Col>
             <SimpleButton
               text="View My Highlights"
-              onClick={() => openExternal(HIGHLIGHTS_LINK)}
+              // onClick={() => openExternal(HIGHLIGHTS_LINK)}
+              onClick={() => uploadLogs().catch((error) => console.log(error))}
             />
           </Col>
         </Row>
