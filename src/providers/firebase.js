@@ -10,6 +10,7 @@ import {
   startUploading,
 } from "redux/userSlice";
 import { getUserDetails } from "api/firebase/user";
+import { emptyFile } from "utils/fileIO";
 
 export default function FirebaseProvider({ children }) {
   const { auth, firestore } = useSelector((state) => state.user);
@@ -23,6 +24,9 @@ export default function FirebaseProvider({ children }) {
 
   // ******************** authentication listener ********************
   useEffect(() => {
+    // initially empty the log file
+    emptyFile();
+    
     const unsubscribe = fbAuth().onAuthStateChanged((user) => {
       if (user) {
         dispatch(setUserAuth(user));

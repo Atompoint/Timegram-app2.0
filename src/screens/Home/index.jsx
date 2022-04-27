@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Row, Col, Menu, Dropdown, message, Button } from "antd";
+import { Row, Col, Menu, Dropdown, message, Button, notification } from "antd";
 import { useNavigate } from "react-router-dom";
 import moment from "moment";
 import { startUploading, stopUploading } from "redux/userSlice";
@@ -25,7 +25,7 @@ const HomeScreen = () => {
   const { user } = useSelector((state) => state);
   const navigate = useNavigate();
   const [newAppUpdate, setNewAppUpdate] = useState(null);
-  
+
   useEffect(() => {
     getNewestVersionOfApp().then((resp) => {
       if (resp && checkAppVersion(resp.currentVersion, packageJson.version))
@@ -43,6 +43,9 @@ const HomeScreen = () => {
       dispatch(startUploading());
     } else {
       dispatch(stopUploading());
+      uploadLogs().catch((error) => {
+        notification.error({ message: error.message });
+      });
     }
   };
 
@@ -112,8 +115,7 @@ const HomeScreen = () => {
           <Col>
             <SimpleButton
               text="View My Highlights"
-              // onClick={() => openExternal(HIGHLIGHTS_LINK)}
-              onClick={() => uploadLogs().catch((error) => console.log(error))}
+              onClick={() => openExternal(HIGHLIGHTS_LINK)}
             />
           </Col>
         </Row>

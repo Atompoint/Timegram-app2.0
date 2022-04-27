@@ -44,15 +44,14 @@ export const uploadLogs = async () => {
     //  ********** upload **********
     let response;
     if (doc.exists) {
-      response = docRef.update(logsToUpload);
+      response = await docRef.update(logsToUpload);
     } else {
-      response = docRef.set(logsToUpload);
+      response = await docRef.set(logsToUpload);
     }
 
     // ********** clear logs **********
-    return response.then((resp) => {
-      emptyFile();
-      return resp;
-    });
+    emptyFile();
+
+    return response;
   }
 };

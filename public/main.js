@@ -13,7 +13,7 @@ const { getActiveWindow } = require("./modules/detectWindow");
 const { openExternalWindow } = require("./modules/utils");
 
 // ******************** contants ********************
-const iconPath = path.join(__dirname, "./Icon.ico");
+const iconPath = path.join(__dirname, "/Icon.ico");
 const CONSTANTS = {
   TRAY: null,
 };

@@ -8,8 +8,8 @@ const ERRORS = {
   },
 };
 
-export const reportError = ({ code, details }) => {
-  refs.errors.doc().set({
+export const reportError = async ({ code, details }) => {
+  return refs.errors.doc().set({
     code,
     message: ERRORS[code].message({ ...details }),
     meta: { createdAt: new Date() },

@@ -1,3 +1,5 @@
+import { notification } from "antd";
+import { uploadLogs } from "api/firebase/highlights";
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { getActiveWindow } from "../ipc";
@@ -27,7 +29,9 @@ export default function HighlightsProvider({ children }) {
     }
     if (uploading) {
       uploadIntervalID = setInterval(() => {
-        // console.log("Uploading...")
+        uploadLogs().catch((error) => {
+          notification.error({ message: error.message });
+        });
       }, UPLOAD_INTERVAL);
     }
     // *******************************************

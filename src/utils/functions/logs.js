@@ -13,8 +13,8 @@ export const updateLogFile = (log) => {
       pid: log.pid,
       applicationName: log.applicationName,
       tabName: log.tabName,
-      startTime: moment(),
-      endTime: moment(),
+      startTime: new Date(),
+      endTime: new Date(),
       // mouse: log.mouse,                                            // future use
       duration: 0,
     };
@@ -23,30 +23,36 @@ export const updateLogFile = (log) => {
     // if idle time is less than 120 seconds increment duration by 3sec
     if (parseInt(log.idleTime) < 120) {
       processes[processKey].duration += 3;
-      processes[processKey].endTime = moment();
+      processes[processKey].endTime = new Date();
     }
   }
+
   writetofile(processes);
 };
 
 export const processLogs = ({ logs, newLogs }) => {
   let logsToUpload = null;
-  const newLogsArray = Object.values(newLogs);
+  // ********** convert new logs to array and convert their times to date objects **********
+  let newLogsArray = Object.values(newLogs).map((log) => ({
+    ...log,
+    startTime: moment(log.startTime).toDate(),
+    endTime: moment(log.endtime).toDate(),
+  }));
 
-  // ********** remove logs with duration less than minimum limit **********
-  // const newLogsFiltered = newLogsArray.filter(
-  //   (log) => log.duration >= MINIMUM_LOG_DURATION
-  // );
-
-  // ********** logs that didn't already exist in DB **********
-  logsToUpload = newLogsArray.filter((log) => !logs?.[log.key]);
-  console.log(logsToUpload.length)
+  // ********** logs that didn't already exist in DB & log durantion > 0 **********
+  logsToUpload = newLogsArray.filter(
+    (log) => !logs?.[log.key] && log.duration > 0
+  );
 
   // ********** update existing logs **********
-  const existingLogs = newLogsArray.filter((log) => logs?.[log.key]);
+  const existingLogs = Object.values(logs || {}).filter(
+    (log) => newLogs?.[log.key]
+  );
+
   const updatedExisitingLogs = existingLogs.map((log) => ({
     ...log,
     duration: log.duration + newLogs[log.key].duration,
+    endTime: moment(newLogs[log.key].endTime).toDate(),
   }));
 
   // ********** combine new logs and updated exisiting logs **********
