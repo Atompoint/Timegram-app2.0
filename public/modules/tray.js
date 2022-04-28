@@ -1,6 +1,7 @@
 const { Tray, nativeImage, app, Menu } = require("electron");
 const { APP_NAME, BACKGROUND_MESSAGE } = require("../utils/contants");
 const { showNotification } = require("./notifications");
+const { iconPath } = require("../utils/contants");
 
 const closeProcess = ({ event, win }) => {
   if (event) {
@@ -19,7 +20,7 @@ const contextMenu = Menu.buildFromTemplate([
   },
 ]);
 
-const TrayHandler = ({ CONSTANTS, iconPath, win }) => {
+const TrayHandler = ({ CONSTANTS, win }) => {
   CONSTANTS.TRAY = new Tray(nativeImage.createFromPath(iconPath));
   CONSTANTS.TRAY.setToolTip(APP_NAME);
   CONSTANTS.TRAY.setContextMenu(contextMenu);

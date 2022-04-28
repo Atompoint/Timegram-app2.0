@@ -6,7 +6,7 @@ import HomeScreen from "screens/Home";
 import { ConfigProvider } from "antd";
 
 const COLORS = {
-  primaryColor: "#1890ff",
+  primaryColor: "#009482",
   errorColor: "#ff4d4f",
   warningColor: "#faad14",
   successColor: "#52c41a",
@@ -18,9 +18,10 @@ function App() {
     ConfigProvider.config({
       theme: {
         ...COLORS,
-        primaryColor: getComputedStyle(
-          document.documentElement
-        ).getPropertyValue("--primaryColor"),
+        // ********** get variable striaght from CSS **********
+        // primaryColor: getComputedStyle(
+        //   document.documentElement
+        // ).getPropertyValue("--primaryColor"),
       },
     });
   }, []);
