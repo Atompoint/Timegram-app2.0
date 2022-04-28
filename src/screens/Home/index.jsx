@@ -43,7 +43,7 @@ const HomeScreen = () => {
       dispatch(startUploading());
     } else {
       dispatch(stopUploading());
-      uploadLogs().catch((error) => {
+      uploadLogs({ dispatch }).catch((error) => {
         notification.error({ message: error.message });
       });
     }
@@ -61,8 +61,7 @@ const HomeScreen = () => {
                 All data is private. Only you can see it.
               </p>
               <p className={styles.paragraph}>
-                Last Uploaded:{" "}
-                {moment(new Date()).format("dddd,  MMM DD gggg hh:mm:ss A")}
+                Last Uploaded: {user.uploadTime || '-'}
               </p>
             </div>
           </Col>

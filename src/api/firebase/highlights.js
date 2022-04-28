@@ -4,6 +4,7 @@ import sizeof from "firestore-size"; // uninstall after user
 import { reportError } from "./errors";
 import { getDate } from "utils/dates";
 import { processLogs } from "utils/functions/logs";
+import { updateTime } from "redux/userSlice";
 
 const fileSizeCheck = ({ logs, email }) => {
   const logSize = sizeof(logs);
@@ -20,7 +21,7 @@ const fileSizeCheck = ({ logs, email }) => {
   }
 };
 
-export const uploadLogs = async () => {
+export const uploadLogs = async ({ dispatch }) => {
   const logs = readLogs();
   if (logs && Object.values(logs).length > 0) {
     const user = currentUser();
@@ -50,6 +51,7 @@ export const uploadLogs = async () => {
     }
 
     // ********** clear logs **********
+    dispatch && dispatch(updateTime());
     emptyFile();
 
     return response;

@@ -13,3 +13,13 @@ export const getActiveWindow = () => {
 export const openExternal = (url) => {
   ipcRenderer.send("OPEN_EXTERNAL", url);
 };
+
+export const forceUpdate = ({ uploading, upload }) => {
+  if (uploading) {
+    ipcRenderer.on("forceUpdate", function (evt) {
+      upload();
+    });
+  } else {
+    ipcRenderer.removeAllListeners("forceUpdate");
+  }
+};

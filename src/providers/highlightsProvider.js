@@ -1,13 +1,14 @@
 import { notification } from "antd";
 import { uploadLogs } from "api/firebase/highlights";
 import React, { useEffect } from "react";
-import { useSelector } from "react-redux";
-import { getActiveWindow } from "../ipc";
+import { useDispatch, useSelector } from "react-redux";
+import { forceUpdate, getActiveWindow } from "../ipc";
 import { DETECT_INTERVAL, UPLOAD_INTERVAL } from "../utils/contants";
 
 let detectIntervalID;
 let uploadIntervalID;
 export default function HighlightsProvider({ children }) {
+  const dispatch = useDispatch();
   const { auth, firestore, uploading } = useSelector((state) => state.user);
 
   useEffect(() => {
@@ -29,12 +30,15 @@ export default function HighlightsProvider({ children }) {
     }
     if (uploading) {
       uploadIntervalID = setInterval(() => {
-        uploadLogs().catch((error) => {
+        uploadLogs({ dispatch }).catch((error) => {
           notification.error({ message: error.message });
         });
       }, UPLOAD_INTERVAL);
     }
     // *******************************************
+
+    // force update logs on app close
+    forceUpdate({ uploading, upload: () => uploadLogs({ dispatch }) });
   }, [uploading]);
 
   return children;

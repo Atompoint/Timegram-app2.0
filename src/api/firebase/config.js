@@ -11,6 +11,7 @@ const firebaseConfig = {
 
 try {
   firebase.initializeApp(firebaseConfig);
+  firebase.firestore().enablePersistence();
 } catch (error) {
   // already exists
 }

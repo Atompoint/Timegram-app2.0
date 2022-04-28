@@ -20,8 +20,10 @@ export const userSlice = createSlice({
     setUserFirestore: (state, action) => {
       state.firestore = action.payload;
     },
-    updateTime: (state, action) => {
-      const timeNow = moment().toDate().toString();
+    updateTime: (state) => {
+      const timeNow = moment(new Date()).format(
+        "dddd,  MMM DD gggg hh:mm:ss A"
+      );
       state.uploadTime = timeNow;
     },
     startUploading: (state) => {

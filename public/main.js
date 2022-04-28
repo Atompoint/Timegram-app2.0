@@ -13,7 +13,6 @@ const { getActiveWindow } = require("./modules/detectWindow");
 const { openExternalWindow } = require("./modules/utils");
 
 // ******************** contants ********************
-// const iconPath = path.join(__dirname, "/icon.ico");
 const CONSTANTS = {
   TRAY: null,
 };
@@ -43,7 +42,7 @@ function createWindow() {
       : `file://${path.join(__dirname, "../build/index.html")}`
   );
 
-  TrayHandler({ CONSTANTS, win });    // Tray Apps
+  TrayHandler({ CONSTANTS, win });              // Tray Apps
 }
 
 app.on("ready", createWindow);                  // creates window
