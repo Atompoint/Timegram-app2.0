@@ -11,6 +11,8 @@
 # production
 /build
 /dist
+/electron-build
+publish-intructions.txt
 
 # misc
 .DS_Store
