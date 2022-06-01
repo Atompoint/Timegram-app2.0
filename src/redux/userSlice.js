@@ -40,6 +40,7 @@ export const userSlice = createSlice({
     },
     clearUser: (state) => {
       state.uploading = false;
+      state.uploadTime= null;
       state.loading = false;
       state.auth = null;
       state.firestore = null;

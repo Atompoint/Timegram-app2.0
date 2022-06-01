@@ -4,6 +4,13 @@ import "./App.css";
 import Login from "screens/Authentication/Login";
 import HomeScreen from "screens/Home";
 import { ConfigProvider } from "antd";
+// electron modules
+const electron = window.require("electron");
+const { ipcRenderer } = electron;
+
+ipcRenderer.on("ping", (event, message) => {
+  console.log(message);
+});
 
 const COLORS = {
   primaryColor: "#009482",

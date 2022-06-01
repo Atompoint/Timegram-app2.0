@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Row, Col, Menu, Dropdown, message, Button, notification } from "antd";
 import { useNavigate } from "react-router-dom";
 import moment from "moment";
-import { startUploading, stopUploading } from "redux/userSlice";
+import { clearUser, startUploading, stopUploading } from "redux/userSlice";
 import { Logo } from "components/logo";
 import styles from "./Home.module.css";
 import { SimpleButton, SwitchButton } from "components/Buttons";
@@ -35,6 +35,7 @@ const HomeScreen = () => {
 
   const logout = () => {
     navigate("/");
+    dispatch(clearUser());
     signOut();
   };
 
@@ -61,7 +62,7 @@ const HomeScreen = () => {
                 All data is private. Only you can see it.
               </p>
               <p className={styles.paragraph}>
-                Last Uploaded: {user.uploadTime || '-'}
+                Last Uploaded: {user.uploadTime || "-"}
               </p>
             </div>
           </Col>

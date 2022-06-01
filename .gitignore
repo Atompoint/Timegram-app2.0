@@ -13,6 +13,7 @@
 /dist
 /electron-build
 publish-intructions.txt
+yarn.lock
 
 # misc
 .DS_Store
