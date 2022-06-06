@@ -6,6 +6,14 @@ const openExternalWindow = () => {
   });
 };
 
+const processName = (name) => {
+  return name
+    .replace(/[^a-zA-Z0-9/-/.| ]+/g, "")
+    .replace(/ *\([^)]*\) */g, "")
+    .trim();
+};
+
 module.exports = {
   openExternalWindow,
+  processName,
 };

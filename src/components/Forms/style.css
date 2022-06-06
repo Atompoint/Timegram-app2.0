@@ -20,3 +20,7 @@ Input {
   box-sizing: border-box;
   border-radius: 6px !important;
 }
+
+.password {
+  border-radius: 6px !important;
+}

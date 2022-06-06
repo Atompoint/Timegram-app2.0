@@ -60,7 +60,7 @@ export const TextBox = ({
       {type !== "password" ? (
         <Input placeholder={placeholder} type={type} className="success" />
       ) : (
-        <Input.Password placeholder={placeholder} className="success" />
+        <Input.Password placeholder={placeholder} className="success password"  />
       )}
     </Form.Item>
   );

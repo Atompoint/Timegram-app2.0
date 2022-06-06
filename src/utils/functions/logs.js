@@ -3,6 +3,8 @@ import { MINIMUM_LOG_DURATION } from "utils/contants";
 import { readLogs, writetofile } from "../fileIO";
 import { hashGenerator } from "./hashGenerator";
 
+const exceptionList = ["electron"];
+
 export const updateLogFile = (log) => {
   let processes = readLogs() || {};
 
@@ -42,6 +44,11 @@ export const processLogs = ({ logs, newLogs }) => {
   // ********** logs that didn't already exist in DB & log durantion > 0 **********
   logsToUpload = newLogsArray.filter(
     (log) => !logs?.[log.key] && log.duration > 0
+  );
+
+  // ********** exception list **********
+  logsToUpload = logsToUpload.filter(
+    (log) => !exceptionList.find(item =>  log.applicationName === item) && log.tabName !== ""
   );
 
   // ********** update existing logs **********

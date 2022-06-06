@@ -1,5 +1,6 @@
 const { screen, ipcMain } = require("electron");
 const activeWindows = require("electron-active-window");
+const { processName } = require("./utils");
 
 const dectectWindow = () => {
   // const mousePos = screen.getCursorScreenPoint();                // future use
@@ -9,8 +10,8 @@ const dectectWindow = () => {
       const activeApplicationName = log.windowClass.split(".");
       const process = {
         pid: log.windowPid,
-        applicationName: activeApplicationName[0],
-        tabName: log.windowName,
+        applicationName: processName(activeApplicationName[0]),
+        tabName: processName(log.windowName),
         // mouse: [mousePos.x, mousePos.y],                         // future use
         duration: 0,
         idleTime: log.idleTime,
@@ -23,6 +24,7 @@ const dectectWindow = () => {
 const getActiveWindow = () => {
   ipcMain.on("GET_ACTIVE_WINDOW", async (e, args) => {
     const data = await dectectWindow();
+
     if (data !== undefined) {
       e.reply("REPLY", data);
     }
