@@ -109,3 +109,15 @@
   font-size: 11px !important;
   color    : #009482 !important
 }
+
+.logoContainer {
+  display: flex;
+  align-items: flex-end;
+}
+
+.version {
+  color: #AAAAAA;
+  margin-left: 5px;
+  font-size: 11px;
+  margin-bottom: 2px;
+}

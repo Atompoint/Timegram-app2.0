@@ -56,7 +56,10 @@ const HomeScreen = () => {
         {/***********  top row (logo, menu & upload details) ***********/}
         <Row>
           <Col flex={1} md={18}>
-            <Logo />
+            <div className={styles.logoContainer} >
+              <Logo />
+              <span className={styles.version}>{packageJson.version}</span>
+            </div>
             <div className={styles.detailsContainer}>
               <p className={styles.paragraph}>
                 All data is private. Only you can see it.
@@ -78,7 +81,7 @@ const HomeScreen = () => {
                     disabled
                     className={styles.appVersion}
                   >
-                    Version: {packageJson.version}
+                    version: {packageJson.version}
                   </Menu.Item>
                 </Menu>
               }
