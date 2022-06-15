@@ -1,0 +1,45 @@
+.wrapper {
+  padding: calc(var(--containerMargin) * 3) calc(var(--containerMargin) * 4) var(--containerMargin) calc(var(--containerMargin) * 4);
+}
+
+.form {
+  margin-top: calc(var(--containerMargin) * 2) !important;
+}
+
+.heading {
+  color: var(--secondaryColor);
+  font-family: Univia Pro;
+  font-size: 44px;
+  font-weight: bold;
+  margin-top: calc(var(--containerMargin) * 4);
+}
+
+.heading > span {
+  color: var(--primaryColor);
+  font-family: Univia Pro;
+}
+
+.textbox {
+  margin-top: 30px !important;
+}
+
+.buttonsContainer {
+  display        : flex;
+  justify-content: space-between;
+  width          : 100%;
+}
+
+
+.spinContainer {
+  height         : 50vh;
+  width          : 100%;
+  display        : flex;
+  justify-content: center;
+  align-items    : center;
+}
+
+.forgotPasswordButton {
+  padding-bottom: calc(var(--containerMargin) * 2) !important;
+  padding-left: 0;
+  padding-right: 0;
+}

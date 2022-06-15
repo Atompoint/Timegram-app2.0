@@ -1,24 +1,43 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from "react";
+import { Route, Routes, useNavigate, useLocation } from "react-router-dom";
+import "./App.css";
+import Login from "screens/Authentication/Login";
+import HomeScreen from "screens/Home";
+import { ConfigProvider } from "antd";
+// electron modules
+const electron = window.require("electron");
+const { ipcRenderer } = electron;
+
+ipcRenderer.on("ping", (event, message) => {
+  console.log(message);
+});
+
+const COLORS = {
+  primaryColor: "#009482",
+  errorColor: "#ff4d4f",
+  warningColor: "#faad14",
+  successColor: "#52c41a",
+  infoColor: "#1890ff",
+};
 
 function App() {
+  useEffect(() => {
+    ConfigProvider.config({
+      theme: {
+        ...COLORS,
+        // ********** get variable striaght from CSS **********
+        // primaryColor: getComputedStyle(
+        //   document.documentElement
+        // ).getPropertyValue("--primaryColor"),
+      },
+    });
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Routes>
+      <Route exact path="/" element={<Login />} />
+      <Route exact path="/home" element={<HomeScreen />} />
+    </Routes>
   );
 }
 
