@@ -3,7 +3,7 @@ import { MINIMUM_LOG_DURATION } from "utils/contants";
 import { readLogs, writetofile } from "../fileIO";
 import { hashGenerator } from "./hashGenerator";
 
-const exceptionList = ["electron"];
+const exceptionList = ["electron", "SearchHost", "LockApp"];
 
 export const updateLogFile = (log) => {
   let processes = readLogs() || {};
@@ -48,7 +48,10 @@ export const processLogs = ({ logs, newLogs }) => {
 
   // ********** exception list **********
   logsToUpload = logsToUpload.filter(
-    (log) => !exceptionList.find(item =>  log.applicationName === item) && log.tabName !== ""
+    (log) =>
+      !exceptionList.find((item) => log.applicationName === item) &&
+      log.applicationName !== "" &&
+      log.tabName !== ""
   );
 
   // ********** update existing logs **********
