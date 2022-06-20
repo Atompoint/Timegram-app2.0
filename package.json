@@ -43,7 +43,7 @@
     "electron:serve": "concurrently -k \"cross-env BROWSER=none yarn start\" \"yarn electron:start\"",
     "electron:build": "yarn build && electron-builder -c.extraMetadata.main=build/main.js",
     "electron:start": "wait-on tcp:3000 && electron .",
-    "electron:publish": "set GH_TOKEN=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 && yarn build && electron-builder -c.extraMetadata.main=build/main.js --win --publish always"
+    "electron:publish": "yarn build && electron-builder -c.extraMetadata.main=build/main.js --win --publish always"
   },
   "build": {
     "extends": null,

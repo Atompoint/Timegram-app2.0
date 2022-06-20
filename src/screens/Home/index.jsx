@@ -56,7 +56,7 @@ const HomeScreen = () => {
         {/***********  top row (logo, menu & upload details) ***********/}
         <Row>
           <Col flex={1} md={18}>
-            <div className={styles.logoContainer} >
+            <div className={styles.logoContainer}>
               <Logo />
               <span className={styles.version}>{packageJson.version}</span>
             </div>
@@ -127,7 +127,8 @@ const HomeScreen = () => {
 
       {/*********** footer ***********/}
       <footer className={styles.footer}>
-        {newAppUpdate && (
+        {/* for future use */}
+        {/* {newAppUpdate && (
           <div className={styles.footerUpdateMsgContainer}>
             <span className={styles.footerMsgTxt}>
               New version {newAppUpdate?.currentVersion} available{" "}
@@ -143,7 +144,7 @@ const HomeScreen = () => {
               Update Now!
             </Button>
           </div>
-        )}
+        )} */}
         <div>
           <h3>{user?.firestore?.email}</h3>
           <SwitchButton checked={user.uploading} onChange={handleButton} />
