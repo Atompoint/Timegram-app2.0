@@ -6,14 +6,14 @@ export const writetofile = (data) => {
   try {
     fs.writeFileSync(LOG_FILE, `${JSON.stringify(data)}`, { flag: "w" });
   } catch (error) {
-    console.log(error.message);
+    console.error("writetofile: ", error.message);
   }
 };
 export const emptyFile = () => {
   try {
     fs.writeFileSync(LOG_FILE, `${JSON.stringify({})}`, { flag: "w" });
   } catch (error) {
-    console.log(error.message);
+    console.error("emptyFile: ", error.message);
   }
 };
 export const readLogs = () => {
@@ -22,6 +22,6 @@ export const readLogs = () => {
     const data = JSON.parse(rawdata);
     return data;
   } catch (error) {
-    console.log(error.message);
+    console.error("readLogs: ", error.message);
   }
 };
