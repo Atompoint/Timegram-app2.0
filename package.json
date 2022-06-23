@@ -1,8 +1,9 @@
 {
   "name": "Timegram",
-  "version": "0.2.60",
+  "version": "0.2.61",
   "author": "Atompoint",
   "description": "Smart Time Tracking",
+  "license": "MIT",
   "private": true,
   "dependencies": {
     "@electron/remote": "^2.0.8",
