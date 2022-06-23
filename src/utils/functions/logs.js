@@ -3,7 +3,7 @@ import { MINIMUM_LOG_DURATION } from "utils/contants";
 import { readLogs, writetofile } from "../fileIO";
 import { hashGenerator } from "./hashGenerator";
 
-const exceptionList = ["electron", "SearchHost", "LockApp"];
+const exceptionList = ["electron", "SearchHost", "LockApp", "Timegram Setup 0"];
 
 export const updateLogFile = (log) => {
   let processes = readLogs() || {};
