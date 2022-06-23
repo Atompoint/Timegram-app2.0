@@ -6,7 +6,7 @@ const isDev = require("electron-is-dev");
 const { autoUpdater } = require("electron-updater");
 const log = require("electron-log");
 
-var AutoLaunch = require('easy-auto-launch');
+var AutoLaunch = require("auto-launch");
 
 // ********** IPC initialization (btw electron and react) **********
 require("@electron/remote/main").initialize();
@@ -60,25 +60,27 @@ function createWindow() {
   }
 
   // ********** Checking if autoLaunch is enabled, if not then enabling it **********
-  let autoLauncher = new AutoLaunch({
-    name: "Timegram",
-    path: app.getPath("exe"),
-    isHidden: false,
-  });
-  autoLauncher
-    .isEnabled()
-    .then(function (isEnabled) {
-      win.webContents.send("ping", `enabled: ${isEnabled}`);
-      win.webContents.send("ping", `path: ${app.getPath("exe")}`);
-      if (isEnabled) return;
-      autoLauncher.enable();
-    })
-    .catch(function (err) {
-      win.webContents.on("did-finish-load", () => {
-        win.webContents.send("ping", err);
-      });
-      throw err;
+  if (!isDev) {
+    let autoLauncher = new AutoLaunch({
+      name: "Timegram",
+      path: app.getPath("exe"),
+      isHidden: false,
     });
+    autoLauncher
+      .isEnabled()
+      .then(function (isEnabled) {
+        if (isEnabled) {
+          return;
+        }
+        autoLauncher.enable();
+      })
+      .catch(function (err) {
+        win.webContents.on("did-finish-load", () => {
+          win.webContents.send("ping", err);
+        });
+        throw err;
+      });
+  }
   // ********************************************************************************
 }
 
