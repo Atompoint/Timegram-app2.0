@@ -111,13 +111,18 @@
 }
 
 .logoContainer {
-  display: flex;
+  display    : flex;
   align-items: flex-end;
 }
 
 .version {
-  color: #AAAAAA;
-  margin-left: 5px;
-  font-size: 11px;
+  color        : #AAAAAA;
+  margin-left  : 5px;
+  font-size    : 11px;
   margin-bottom: 2px;
+}
+
+.logoutBtn {
+  padding  : 0;
+  font-size: 12px;
 }

@@ -6,7 +6,7 @@ import moment from "moment";
 import { clearUser, startUploading, stopUploading } from "redux/userSlice";
 import { Logo } from "components/logo";
 import styles from "./Home.module.css";
-import { SimpleButton, SwitchButton } from "components/Buttons";
+import { SimpleButton, SwitchButton, LinkButton } from "components/Buttons";
 import { openExternal } from "ipc";
 // import { timeToMidnight } from "../../utils/Functions/helpers";
 // import { user } from "../../services/user";
@@ -65,12 +65,19 @@ const HomeScreen = () => {
                 All data is private. Only you can see it.
               </p>
               <p className={styles.paragraph}>
-                Last Uploaded: {user.uploadTime || "-"}
+                Last Uploaded: {user.uploadTime || "None in current session"}
               </p>
             </div>
           </Col>
           <Col flex={1} md={6} className={styles.menuContainer}>
-            <Dropdown
+            <LinkButton
+              className={styles.logoutBtn}
+              text="Logout"
+              type="secondary"
+              onClick={() => openExternal(HIGHLIGHTS_LINK)}
+            />
+            {/* for future use */}
+            {/* <Dropdown
               overlay={
                 <Menu>
                   <Menu.Item key="logout" onClick={logout}>
@@ -91,7 +98,7 @@ const HomeScreen = () => {
                 className={styles.downArrow}
                 alt="down-icon"
               />
-            </Dropdown>
+            </Dropdown> */}
           </Col>
         </Row>
         {/**************************************************************/}
