@@ -1,12 +1,22 @@
 import firebase from "firebase";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBLu2iTWYpJXXK-897L3u77tB6D4UCRMcM",
-  authDomain: "timegram-8ecdc.firebaseapp.com",
-  projectId: "timegram-8ecdc",
-  storageBucket: "timegram-8ecdc.appspot.com",
-  messagingSenderId: "427609028375",
-  appId: "1:427609028375:web:82b51076e1a711d72a6952",
+  // ********** production **********
+  apiKey: "AIzaSyC0v_0kmabYJJcNrkJo7_fHXPnTWZejNyc",
+  authDomain: "timegram-production.firebaseapp.com",
+  projectId: "timegram-production",
+  storageBucket: "timegram-production.appspot.com",
+  messagingSenderId: "1010963706170",
+  appId: "1:1010963706170:web:41a84a4347c043c66ca003",
+  // ********************************
+  // ********** staging **********
+  // apiKey: 'AIzaSyBLu2iTWYpJXXK-897L3u77tB6D4UCRMcM',
+  // authDomain: 'timegram-8ecdc.firebaseapp.com',
+  // projectId: 'timegram-8ecdc',
+  // storageBucket: 'timegram-8ecdc.appspot.com',
+  // messagingSenderId: '427609028375',
+  // appId: '1:427609028375:web:82b51076e1a711d72a6952',
+  // *****************************
 };
 
 try {
