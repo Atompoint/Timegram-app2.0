@@ -39,7 +39,7 @@ function createWindow() {
     autoHideMenuBar: true,
     maximizable: false,
     icon: iconPath,
-    title: "Timegram",
+    title: "Timegram - Staging",
   });
 
   win.loadURL(

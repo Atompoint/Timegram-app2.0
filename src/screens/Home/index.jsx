@@ -70,7 +70,7 @@ const HomeScreen = () => {
               className={styles.logoutBtn}
               text="Logout"
               type="secondary"
-              onClick={() => openExternal(HIGHLIGHTS_LINK)}
+              click={logout}
             />
             {/* for future use */}
             {/* <Dropdown
