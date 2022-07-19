@@ -5,3 +5,4 @@ export const LOG_FILE = "logs.json";
 export const WEB_LINK = "https://timegram-8ecdc.web.app";
 export const FORGOT_PASSWORD_LINK = `${WEB_LINK}/forgot-password`;
 export const HIGHLIGHTS_LINK = `${WEB_LINK}/timetracker`;
+export const IDLETIME = 240;
