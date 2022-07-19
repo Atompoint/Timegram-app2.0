@@ -22,8 +22,7 @@ export const updateLogFile = (log) => {
     };
     processes[processKey] = object;
   } else {
-    // if idle time is less than 120 seconds increment duration by 3sec
-    // convert into Constant
+    // if idle time is less than 240 seconds increment duration by 3sec
     if (parseInt(log.idleTime) < IDLETIME) {
       processes[processKey].duration += 3;
       processes[processKey].endTime = new Date();
