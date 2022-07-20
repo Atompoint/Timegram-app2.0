@@ -1,32 +1,32 @@
-import React from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { Row, Col, Form, Spin, message } from "antd";
-import { Logo } from "components/logo";
-import styles from "./Login.module.css";
-import { TextBox } from "components/Forms/TextBox";
-import { CheckBox } from "components/Forms/CheckBox";
-import { LinkButton, SimpleButton } from "components/Buttons";
-import { signIn } from "api/firebase/user";
-import { openExternal } from "../../ipc";
-import { FORGOT_PASSWORD_LINK } from "utils/contants";
+import React from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { Row, Col, Form, Spin, message } from 'antd'
+import { Logo } from 'components/logo'
+import styles from './Login.module.css'
+import { TextBox } from 'components/Forms/TextBox'
+import { CheckBox } from 'components/Forms/CheckBox'
+import { LinkButton, SimpleButton } from 'components/Buttons'
+import { signIn } from 'api/firebase/user'
+import { openExternal } from '../../ipc'
+import { FORGOT_PASSWORD_LINK } from 'utils/contants'
 // import { emptyFile } from '../../utils/Functions/className'
-import { startUserLoading, stopUserLoading, clearUser } from "redux/userSlice";
+import { startUserLoading, stopUserLoading, clearUser } from 'redux/userSlice'
 
 const Login = () => {
-  const dispatch = useDispatch();
-  const user = useSelector((state) => state.user);
+  const dispatch = useDispatch()
+  const user = useSelector((state) => state.user)
 
   const handleSubmit = (values) => {
     if (user.firestore || user.auth) {
-      dispatch(clearUser());
+      dispatch(clearUser())
     }
     setTimeout(() => {
-      dispatch(startUserLoading());
+      dispatch(startUserLoading())
       signIn(values).catch(() => {
-        dispatch(stopUserLoading());
-      });
-    }, 0);
-  };
+        dispatch(stopUserLoading())
+      })
+    }, 0)
+  }
 
   return (
     <Row>
@@ -55,54 +55,54 @@ const Login = () => {
                   </span>
                 </p> */}
             <Form
-              layout="vertical"
+              layout='vertical'
               className={styles.form}
               requiredMark={false}
               onFinish={handleSubmit}
-              autoComplete="off"
+              autoComplete='off'
             >
               <TextBox
-                validationKey="email"
-                name="email"
-                label="Work Email"
-                placeholder="Please Enter Work Email"
-                type="text"
+                validationKey='email'
+                name='email'
+                label='Work Email'
+                placeholder='Please Enter Work Email'
+                type='text'
               />
               <TextBox
                 className={styles.textbox}
-                validationKey="password"
-                name="password"
-                label="Password"
-                placeholder="Enter 6 or more characters"
-                type="password"
+                validationKey='password'
+                name='password'
+                label='Password'
+                placeholder='Please Enter Password'
+                type='password'
               />
               <div className={styles.buttonsContainer}>
                 <CheckBox
-                  name="isRemember"
-                  text="Remember Me"
-                  propName="checked"
+                  name='isRemember'
+                  text='Remember Me'
+                  propName='checked'
                 />
 
                 <LinkButton
                   click={() => openExternal(FORGOT_PASSWORD_LINK)}
                   icon={false}
-                  text="Forgot Password?"
+                  text='Forgot Password?'
                   className={styles.forgotPasswordButton}
                 />
               </div>
               <SimpleButton
-                type="primary"
-                size="large"
-                shape="round"
-                text="Sign in"
-                hType="submit"
+                type='primary'
+                size='large'
+                shape='round'
+                text='Sign in'
+                hType='submit'
               />
             </Form>
           </>
         )}
       </Col>
     </Row>
-  );
-};
+  )
+}
 
-export default Login;
+export default Login

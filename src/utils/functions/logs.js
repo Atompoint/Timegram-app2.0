@@ -1,5 +1,5 @@
 import moment from "moment";
-import { MINIMUM_LOG_DURATION } from "utils/contants";
+import { IDLETIME, MINIMUM_LOG_DURATION } from "utils/contants";
 import { readLogs, writetofile } from "../fileIO";
 import { hashGenerator } from "./hashGenerator";
 
@@ -8,7 +8,8 @@ const exceptionList = ["electron", "SearchHost", "LockApp", "Timegram Setup 0"];
 export const updateLogFile = (log) => {
   let processes = readLogs() || {};
 
-  const processKey = `${hashGenerator(log.tabName)}-${log.pid}`;
+  // const processKey = `${hashGenerator(log.tabName)}-${log.pid}`;  // for future use
+  const processKey = hashGenerator(`${log.applicationName}-${log.tabName}`);
   if (!processes[processKey]) {
     const object = {
       key: processKey,
@@ -22,8 +23,8 @@ export const updateLogFile = (log) => {
     };
     processes[processKey] = object;
   } else {
-    // if idle time is less than 120 seconds increment duration by 3sec
-    if (parseInt(log.idleTime) < 120) {
+    // if idle time is less than 240 seconds increment duration by 3sec
+    if (parseInt(log.idleTime) < IDLETIME) {
       processes[processKey].duration += 3;
       processes[processKey].endTime = new Date();
     }
